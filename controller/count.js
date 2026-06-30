@@ -64,7 +64,9 @@ exports.getCount = async (req, res) => {
     const nextMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
 
 
-    const totalCompanies = await Company.count();
+    const totalCompanies = await Company.count({
+        where: { ...companyWhere }
+  });
 
     const totalInvoices = await Invoices.count({ where: whereCondition });
 
